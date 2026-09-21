@@ -8,13 +8,6 @@
 
 Proyecto inicial para representar el dominio de una biblioteca popular.
 
-## Que incluye esta entrega
-
-- Estructura base con `Frontend/` y `Backend/`.
-- Modelos del dominio en `Backend/src/models/`.
-- Documentacion del proyecto en `Documentacion/`.
-- Maqueta visual inicial del sitio.
-
 ## Alcance
 
 Esta etapa solo representa el dominio del proyecto.
@@ -29,7 +22,6 @@ Esta etapa solo representa el dominio del proyecto.
 .
 |-- Backend/
 |   `-- src/models/
-|-- Frontend/
 `-- Documentacion/
 ```
 
