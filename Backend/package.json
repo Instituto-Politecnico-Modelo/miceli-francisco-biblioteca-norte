@@ -1,5 +1,12 @@
 {
   "name": "backend-biblioteca",
   "private": true,
-  "type": "commonjs"
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
