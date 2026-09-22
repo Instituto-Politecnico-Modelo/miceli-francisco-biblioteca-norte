@@ -25,7 +25,12 @@ class LibroRepository {
         if (!libro) {
             return null;
         }
-        Object.assign(libro, cambios);
+        // Whitelist fields so callers can never overwrite id or inject extra properties.
+        const { titulo, autor, categoria, estado } = cambios;
+        if (titulo !== undefined) libro.titulo = titulo;
+        if (autor !== undefined) libro.autor = autor;
+        if (categoria !== undefined) libro.categoria = categoria;
+        if (estado !== undefined) libro.estado = estado;
         return libro;
     }
 

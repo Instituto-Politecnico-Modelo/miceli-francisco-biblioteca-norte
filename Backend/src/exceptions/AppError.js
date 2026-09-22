@@ -23,8 +23,5 @@ class ConflictError extends AppError {
     }
 }
 
-module.exports = AppError;
-module.exports.AppError = AppError;
-module.exports.BadRequestError = BadRequestError;
-module.exports.NotFoundError = NotFoundError;
-module.exports.ConflictError = ConflictError;
+module.exports = { AppError, BadRequestError, NotFoundError, ConflictError };
+
