@@ -1,5 +1,6 @@
 const libroService = require("../services/LibroService.js");
 const ApiResponse = require("../responses/ApiResponse.js");
+const parseId = require("../utils/parseId.js");
 
 class LibroController {
     listar(req, res, next) {
@@ -13,7 +14,7 @@ class LibroController {
 
     obtenerPorId(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = parseId(req.params.id);
             const libro = libroService.obtenerPorId(id);
             return ApiResponse.success(res, libro);
         } catch (error) {
@@ -32,7 +33,7 @@ class LibroController {
 
     actualizar(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = parseId(req.params.id);
             const libro = libroService.actualizar(id, req.body);
             return ApiResponse.success(res, libro);
         } catch (error) {
@@ -42,7 +43,7 @@ class LibroController {
 
     eliminar(req, res, next) {
         try {
-            const id = Number(req.params.id);
+            const id = parseId(req.params.id);
             libroService.eliminar(id);
             return ApiResponse.success(res, null);
         } catch (error) {
