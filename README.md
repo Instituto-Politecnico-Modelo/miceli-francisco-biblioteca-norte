@@ -85,6 +85,7 @@ o, en caso de error:
 - Diagrama de clases del dominio.
 - Maqueta HTML de referencia.
 - Imagenes usadas por la maqueta.
+- Casos de prueba HTTP del CRUD: `Documentacion/casos_prueba_http.md`.
 
 ## Entidades principales
 
