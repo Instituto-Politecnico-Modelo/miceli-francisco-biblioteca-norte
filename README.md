@@ -26,6 +26,20 @@ npm start
 
 El servidor levanta en `http://localhost:3000`.
 
+## Cómo correr el frontend
+
+En otra terminal, desde `frontend`:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Abrí la URL que muestra Vite (por defecto `http://localhost:5173`). El backend debe estar
+activo en `http://localhost:3000`; durante el desarrollo, Vite redirige `/api` al backend.
+Para cambiar la URL de la API, definí `VITE_API_URL` (por ejemplo, `http://localhost:3000/api/libros`).
+
 ## Endpoints - `/api/libros`
 
 | Método | Ruta              | Descripción                    |
