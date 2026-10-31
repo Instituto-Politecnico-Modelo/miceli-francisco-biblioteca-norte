@@ -14,7 +14,7 @@
   .main-nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
   .main-nav a::after { display: none; }
   .main-nav a[aria-current="location"] { color: var(--terracotta-dark); font-weight: 700; }
-  .intro-section, .services-section, .membership-section, .contact-section { grid-template-columns: 1fr; }
+  .intro-section, .services-section, .membership-section, .contact-section, .today-section { grid-template-columns: 1fr; }
   .services-heading { position: static; }
   .news-grid { grid-template-columns: 1fr; }
   .news-card-featured { grid-row: auto; grid-template-rows: auto auto; }
@@ -38,10 +38,12 @@
   .hero-search-box .button { padding: 10px 14px; }
   .hero-caption { right: 16px; bottom: 12px; font-size: 12px; }
   .service-item { grid-template-columns: 1fr; gap: 6px; }
-  .collections-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .collection-item { min-height: 150px; padding: 16px 14px; }
-  .collection-total { font-size: 40px; }
-  .collection-name { font-size: 18px; }
+  .shelf { gap: 32px 4px; }
+  .spine { width: calc(var(--ancho) * .86); height: calc(var(--alto) * .84); padding-right: 4px; padding-left: 4px; }
+  .spine-name { font-size: 16px; }
+  .today-cover { width: 150px; min-height: 206px; }
+  .hero-status { bottom: 14px; left: 22px; }
+  .hero-caption { display: none; }
   .membership-step { grid-template-columns: 44px minmax(0, 1fr); }
   .membership-number { font-size: 36px; }
   .news-card:not(.news-card-featured) { grid-template-columns: 1fr; }

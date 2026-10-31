@@ -1,4 +1,5 @@
 import Icon from "./Icon.jsx";
+import EstadoAtencion from "./EstadoAtencion.jsx";
 import { contacto } from "../utils/siteContent.js";
 
 export default function ContactSection() {
@@ -12,6 +13,7 @@ export default function ContactSection() {
         <a href={contacto.mapaUrl} target="_blank" rel="noreferrer">{contacto.direccion} <Icon name="arrow-up-right" size={15} /></a>
         <a href={contacto.telefonoHref}>{contacto.telefono}</a>
         <span>{contacto.horario}</span>
+        <EstadoAtencion />
       </div>
     </section>
   );

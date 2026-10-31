@@ -59,8 +59,9 @@
 .book-card:hover .book-cover { transform: translateY(-4px) rotate(-.6deg); }
 .book-cover-category { max-width: calc(100% - 40px); font-size: 13px; font-weight: 600; opacity: .9; }
 .book-cover-title { overflow-wrap: anywhere; font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.18; }
-.book-cover-author { font-size: 14px; opacity: .92; }
-.book-cover .favorite-button { position: absolute; top: 8px; right: 6px; color: var(--tone-fg); }
+.book-cover-author { padding-right: 38px; font-size: 14px; opacity: .92; }
+.bookmark { position: absolute; top: 0; right: 14px; width: 18px; height: 38px; background: var(--paper-light); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%); }
+.book-cover .favorite-button { position: absolute; right: 6px; bottom: 8px; color: var(--tone-fg); }
 .book-cover .favorite-button:hover { background: rgba(255, 255, 255, .18); color: var(--tone-fg); }
 .book-cover .favorite-button[aria-pressed="true"] { color: var(--tone-fg); }
 .book-card-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }

@@ -53,6 +53,7 @@ export const contacto = {
   telefono: "011 4572-9107",
   telefonoHref: "tel:01145729107",
   horario: "Lunes a viernes, de 17:00 a 20:00 hs.",
+  atencion: { dias: [1, 2, 3, 4, 5], abre: 17, cierra: 20 },
 };
 
 export const services = [

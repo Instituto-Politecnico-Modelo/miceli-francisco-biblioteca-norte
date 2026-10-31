@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "./Icon.jsx";
+import EstadoAtencion from "./EstadoAtencion.jsx";
 import { hero } from "../utils/siteContent.js";
 
 export default function Hero({ imagen, onBuscar }) {
@@ -31,6 +32,7 @@ export default function Hero({ imagen, onBuscar }) {
         <a className="hero-link" href="#catalogo">Ver todo el catálogo <Icon name="arrow-down" size={16} /></a>
       </div>
       <span className="hero-caption">{hero.pie}</span>
+      <div className="hero-status"><EstadoAtencion sobreOscuro /></div>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import Icon from "./Icon.jsx";
+import { tonoDeCategoria } from "../utils/libros.js";
 
 const etiquetasEstado = {
   disponible: "Disponible",
@@ -6,12 +7,6 @@ const etiquetasEstado = {
   reservado: "Reservado",
   de_baja: "Dado de baja",
 };
-
-function tonoDeCategoria(categoria = "") {
-  let suma = 0;
-  for (const caracter of categoria) suma += caracter.charCodeAt(0);
-  return suma % 5;
-}
 
 function BotonFavorito({ libro, activo, onToggle }) {
   return (
@@ -69,6 +64,7 @@ export default function BookList({ libros, vista, favoritos, onToggleFavorito, l
         return vista === "grilla" ? (
           <li className="book-card" key={libro.id}>
             <div className={`book-cover tone-${tonoDeCategoria(libro.categoria)}`}>
+              {esFavorito && <span className="bookmark" aria-hidden="true" />}
               <span className="book-cover-category">{libro.categoria}</span>
               <span className="book-cover-title">{libro.titulo}</span>
               <span className="book-cover-author">{libro.autor}</span>
