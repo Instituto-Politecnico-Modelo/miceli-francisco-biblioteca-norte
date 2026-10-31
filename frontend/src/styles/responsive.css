@@ -1,0 +1,77 @@
+@media (max-width: 1100px) {
+  .main-nav { gap: 12px; font-size: 13px; }
+  .header-cta { display: none; }
+  .catalog-layout:has(.form-panel) { grid-template-columns: minmax(0, 1fr) 290px; }
+  .control-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .control-row-chips { grid-template-columns: 1fr; }
+  .search-field { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+  .menu-toggle { display: inline-flex; margin-left: auto; }
+  .main-nav { position: absolute; top: 100%; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px clamp(20px, 5vw, 72px) 16px; border-bottom: 1px solid var(--line); background: var(--paper-light); box-shadow: var(--shadow-soft); font-size: 16px; }
+  .main-nav.is-open { display: flex; }
+  .main-nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .main-nav a::after { display: none; }
+  .main-nav a[aria-current="location"] { color: var(--terracotta-dark); font-weight: 700; }
+  .intro-section, .services-section, .membership-section, .contact-section, .today-section { grid-template-columns: 1fr; }
+  .services-heading { position: static; }
+  .news-grid { grid-template-columns: 1fr; }
+  .news-card-featured { grid-row: auto; grid-template-rows: auto auto; }
+  .news-card-featured .news-image-wrap { aspect-ratio: 16 / 9; }
+  .catalog-layout:has(.form-panel) { grid-template-columns: 1fr; }
+  .form-panel { position: static; order: -1; }
+  .book-row { grid-template-columns: 8px minmax(0, 1fr) auto auto; gap: 10px 12px; }
+  .book-actions { grid-column: 2 / -1; justify-self: end; }
+}
+
+@media (max-width: 680px) {
+  html { scroll-padding-top: 76px; }
+  .site-header { min-height: 68px; }
+  .brand-mark { width: 40px; height: 40px; }
+  .brand-name { font-size: 12px; }
+  .brand-name strong { font-size: 14px; }
+  .hero { min-height: 560px; background-position: 60% center; }
+  .hero-content { padding: 56px 22px 72px; }
+  .hero-copy { font-size: 16px; }
+  .hero-search-box { padding-left: 12px; }
+  .hero-search-box .button { padding: 10px 14px; }
+  .hero-caption { right: 16px; bottom: 12px; font-size: 12px; }
+  .service-item { grid-template-columns: 1fr; gap: 6px; }
+  .shelf { justify-content: center; gap: 32px 4px; }
+  .spine { width: calc(var(--ancho) * .86); height: calc(var(--alto) * .84); padding-right: 4px; padding-left: 4px; }
+  .spine-name { font-size: 16px; }
+  .today-cover { width: 150px; min-height: 206px; }
+  .hero-status { bottom: 14px; left: 22px; }
+  .hero-caption { display: none; }
+  .membership-step { grid-template-columns: 44px minmax(0, 1fr); }
+  .membership-number { font-size: 36px; }
+  .news-card:not(.news-card-featured) { grid-template-columns: 1fr; }
+  .news-card:not(.news-card-featured) .news-image-wrap { aspect-ratio: 16 / 9; }
+  .catalog-heading { align-items: center; }
+  .catalog-heading h2 { font-size: 32px; }
+  .add-button { min-height: 42px; padding: 8px 14px; font-size: 14px; white-space: nowrap; }
+  .catalog-controls { gap: 12px; padding: 14px; }
+  .control-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .control-row-chips { grid-template-columns: 1fr; gap: 10px; }
+  .filter-field select { padding-right: 6px; text-overflow: ellipsis; }
+  .chip-group { flex-wrap: nowrap; margin-inline: -14px; padding: 2px 14px 6px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+  .chip-group::-webkit-scrollbar { display: none; }
+  .chip-group .chip { flex: 0 0 auto; scroll-snap-align: start; }
+  .control-tools { justify-content: space-between; flex-wrap: nowrap; }
+  .book-list-grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .book-cover { min-height: 210px; }
+  .book-cover-title { font-size: 18px; }
+  .book-row { grid-template-columns: 6px minmax(0, 1fr) auto; row-gap: 6px; }
+  .book-details p { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+  .book-category { margin: 0; }
+  .book-row .status-tag { grid-column: 2; grid-row: 2; justify-self: start; }
+  .book-row .favorite-button { grid-column: 3; grid-row: 1; }
+  .book-row .book-actions { grid-column: 2 / -1; grid-row: 3; justify-self: start; }
+  .text-action { min-height: 40px; }
+  .menu-toggle { min-height: 44px; }
+  .site-footer { flex-wrap: wrap; padding: 20px 22px calc(20px + env(safe-area-inset-bottom)); }
+  .site-footer span:nth-child(2) { order: 3; width: 100%; }
+  .back-to-top { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); }
+  .toast { left: max(14px, env(safe-area-inset-left)); bottom: max(14px, env(safe-area-inset-bottom)); }
+}

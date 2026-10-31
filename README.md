@@ -11,30 +11,74 @@ el backend con el patrón MVC y expone un CRUD de `Libro` sobre Express.
 
 ## Alcance
 
-- Arquitectura en capas (MVC) bajo `Backend/src`.
+- Arquitectura en capas (MVC) bajo `backend/src`.
 - Persistencia en memoria mediante arrays (sin base de datos).
 - CRUD completo de la entidad `Libro`.
+- Sitio público de solo lectura (`/`) y panel de administración protegido (`/admin`).
+- Autenticación de administrador con código y token de sesión: crear, editar y eliminar libros exige ser administrador.
 - Manejo centralizado de errores con clases `AppError` y mensajes en un enum.
 
 ## Cómo correr el backend
 
 ```bash
-cd Backend
+cd backend
 npm install
 npm start
 ```
 
 El servidor levanta en `http://localhost:3000`.
 
+### Código de administrador
+
+Para entrar a `/admin` (`http://localhost:5173/admin`) se usa un código de administrador.
+
+> **Etapa de pruebas:** por ahora el código está fijo y publicado acá para poder probar el sistema.
+> Antes de un uso real hay que cambiarlo y no publicarlo.
+
+| Dato | Valor |
+| ---- | ----- |
+| Código de administrador (prueba) | `pueyrredon-admin-2026` |
+
+Para usar otro código sin tocar el código fuente, definilo con la variable de entorno `ADMIN_CODIGO`:
+
+```powershell
+$env:ADMIN_CODIGO = "mi-codigo-secreto"; npm start
+```
+
+## Cómo correr el frontend
+
+En otra terminal, desde `frontend`:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Abrí la URL que muestra Vite (por defecto `http://localhost:5173`). El backend debe estar
+activo en `http://localhost:3000`; durante el desarrollo, Vite redirige `/api` al backend.
+Para cambiar la URL de la API, definí `VITE_API_URL` (por ejemplo, `http://localhost:3000/api`).
+
 ## Endpoints - `/api/libros`
 
-| Método | Ruta              | Descripción                    |
-| ------ | ----------------- | ------------------------------- |
-| GET    | `/api/libros`     | Lista todos los libros          |
-| GET    | `/api/libros/:id` | Obtiene un libro por id         |
-| POST   | `/api/libros`     | Crea un libro                   |
-| PUT    | `/api/libros/:id` | Actualiza un libro (parcial)    |
-| DELETE | `/api/libros/:id` | Elimina un libro                |
+| Método | Ruta              | Descripción                    | Acceso        |
+| ------ | ----------------- | ------------------------------- | ------------- |
+| GET    | `/api/libros`     | Lista todos los libros          | Público       |
+| GET    | `/api/libros/:id` | Obtiene un libro por id         | Público       |
+| POST   | `/api/libros`     | Crea un libro                   | Administrador |
+| PUT    | `/api/libros/:id` | Actualiza un libro (parcial)    | Administrador |
+| DELETE | `/api/libros/:id` | Elimina un libro                | Administrador |
+
+## Endpoints - `/api/auth`
+
+| Método | Ruta               | Descripción                                          | Acceso        |
+| ------ | ------------------ | ---------------------------------------------------- | ------------- |
+| POST   | `/api/auth/login`  | Recibe `{ "codigo": "..." }` y devuelve un token      | Público       |
+| GET    | `/api/auth/sesion` | Verifica que el token siga vigente                   | Administrador |
+| POST   | `/api/auth/logout` | Cierra la sesión y anula el token                    | Administrador |
+
+Las rutas de administrador esperan el header `Authorization: Bearer <token>`. La sesión dura 8 horas y,
+tras 5 intentos fallidos desde una misma dirección, el login se bloquea temporalmente.
 
 Body esperado para crear/actualizar:
 
@@ -65,7 +109,7 @@ o, en caso de error:
 
 ```text
 .
-|-- Backend/
+|-- backend/
 |   `-- src/
 |       |-- controllers/
 |       |-- services/
