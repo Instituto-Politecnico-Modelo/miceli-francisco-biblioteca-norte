@@ -6,7 +6,7 @@ import ConfirmDialog from "./ConfirmDialog.jsx";
 import Icon from "./Icon.jsx";
 import { LIBROS_POR_PAGINA } from "../hooks/useCatalogo.js";
 
-export default function CatalogSection({ datos, catalogo, favoritos }) {
+export default function CatalogSection({ datos, catalogo, favoritos, admin = false }) {
   const [formOpen, setFormOpen] = useState(false);
   const [libroEditando, setLibroEditando] = useState(null);
   const [libroAEliminar, setLibroAEliminar] = useState(null);
@@ -51,7 +51,7 @@ export default function CatalogSection({ datos, catalogo, favoritos }) {
           <h2 id="catalog-title">Catálogo</h2>
           <p className="catalog-count">{loading ? "Actualizando…" : `${libros.length} ${libros.length === 1 ? "libro" : "libros"} en ${colecciones.length} ${colecciones.length === 1 ? "colección" : "colecciones"}`}</p>
         </div>
-        <button className="button button-primary add-button" type="button" onClick={abrirNuevoLibro}><Icon name="plus" size={18} /> Agregar libro</button>
+        {admin && <button className="button button-primary add-button" type="button" onClick={abrirNuevoLibro}><Icon name="plus" size={18} /> Agregar libro</button>}
       </div>
 
       <div className="catalog-layout">
@@ -66,8 +66,8 @@ export default function CatalogSection({ datos, catalogo, favoritos }) {
             loading={loading}
             error={error}
             onRetry={datos.recargar}
-            onEdit={editarLibro}
-            onDelete={setLibroAEliminar}
+            onEdit={admin ? editarLibro : undefined}
+            onDelete={admin ? setLibroAEliminar : undefined}
             mensajeVacio={catalogo.mensajeVacio}
           />
           {!loading && !error && restantes > 0 && (
@@ -76,7 +76,7 @@ export default function CatalogSection({ datos, catalogo, favoritos }) {
             </button>
           )}
         </div>
-        {formOpen && (
+        {admin && formOpen && (
           <BookForm
             libro={libroEditando}
             submitting={guardando}
@@ -86,15 +86,17 @@ export default function CatalogSection({ datos, catalogo, favoritos }) {
         )}
       </div>
 
-      <ConfirmDialog
-        abierto={Boolean(libroAEliminar)}
-        titulo="¿Eliminar este libro?"
-        mensaje={libroAEliminar ? `“${libroAEliminar.titulo}” se quitará del catálogo. Esta acción no se puede deshacer.` : ""}
-        confirmar="Eliminar libro"
-        procesando={eliminando}
-        onConfirm={confirmarEliminacion}
-        onCancel={() => setLibroAEliminar(null)}
-      />
+      {admin && (
+        <ConfirmDialog
+          abierto={Boolean(libroAEliminar)}
+          titulo="¿Eliminar este libro?"
+          mensaje={libroAEliminar ? `“${libroAEliminar.titulo}” se quitará del catálogo. Esta acción no se puede deshacer.` : ""}
+          confirmar="Eliminar libro"
+          procesando={eliminando}
+          onConfirm={confirmarEliminacion}
+          onCancel={() => setLibroAEliminar(null)}
+        />
+      )}
     </section>
   );
 }

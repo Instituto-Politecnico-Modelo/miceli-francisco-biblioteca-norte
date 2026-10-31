@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { institucion } from "../utils/siteContent.js";
 
 export default function Footer() {
@@ -5,7 +6,10 @@ export default function Footer() {
     <footer className="site-footer">
       <span>{institucion.nombre}</span>
       <span>{institucion.barrio}. Desde {institucion.fundacion}.</span>
-      <a href="#inicio">Volver arriba</a>
+      <nav className="footer-links" aria-label="Enlaces del pie">
+        <a href="#inicio">Volver arriba</a>
+        <Link to="/admin">Administración</Link>
+      </nav>
     </footer>
   );
 }

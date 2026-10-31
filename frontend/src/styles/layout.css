@@ -38,6 +38,19 @@
 .site-footer span:first-child { font-family: var(--serif); font-size: 16px; font-weight: 600; color: #fff9ec; }
 .site-footer a { color: var(--ochre); font-weight: 600; }
 .site-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+
+.admin-bar-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 18px; }
+.admin-badge { padding: 4px 12px; border-radius: 999px; background: var(--green-dark); color: var(--paper-light); font-size: 13px; font-weight: 700; }
+.admin-bar .button { min-height: 40px; padding: 6px 14px; font-size: 14px; }
+.admin-main { display: flow-root; min-height: calc(100vh - 76px); background: var(--paper-light); }
+.admin-main .catalog-section { padding-top: clamp(32px, 5vw, 56px); }
+.admin-status { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0; padding: 80px 20px; color: var(--muted); }
+
+.login-panel { display: grid; width: min(460px, calc(100% - 40px)); gap: 14px; margin: clamp(40px, 10vh, 100px) auto; padding: 32px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); box-shadow: var(--shadow-soft); }
+.login-panel h1 { margin: 0; color: var(--green-dark); font-size: 30px; font-weight: 600; line-height: 1.15; }
+.login-panel p { margin: 0; color: var(--muted); }
+.login-panel form { display: grid; gap: 16px; margin-top: 6px; }
 
 .back-to-top { position: fixed; z-index: 40; right: 22px; bottom: 22px; display: grid; width: 48px; height: 48px; place-items: center; border-radius: 50%; background: var(--green-dark); color: var(--paper-light); box-shadow: var(--shadow-soft); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .25s var(--ease-out), transform .25s var(--ease-out), background-color .2s; }
 .back-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }

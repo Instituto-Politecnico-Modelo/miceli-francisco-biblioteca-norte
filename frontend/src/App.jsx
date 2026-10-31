@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import Toast from "./components/Toast.jsx";
+import Admin from "./pages/Admin.jsx";
 import Home from "./pages/Home.jsx";
 
 export default function App() {
@@ -16,9 +18,20 @@ export default function App() {
 
   return (
     <>
-      <Header />
-      <Home notificar={notificar} />
-      <Footer />
+      <Routes>
+        <Route
+          path="/"
+          element={(
+            <>
+              <Header />
+              <Home notificar={notificar} />
+              <Footer />
+            </>
+          )}
+        />
+        <Route path="/admin" element={<Admin notificar={notificar} />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
       <Toast notification={notification} onDismiss={() => setNotification(null)} />
     </>
   );

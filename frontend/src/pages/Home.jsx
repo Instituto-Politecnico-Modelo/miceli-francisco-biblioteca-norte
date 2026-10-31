@@ -7,9 +7,7 @@ import IntroSection from "../components/IntroSection.jsx";
 import MembershipSection from "../components/MembershipSection.jsx";
 import NewsSection from "../components/NewsSection.jsx";
 import ServicesSection from "../components/ServicesSection.jsx";
-import { useCatalogo } from "../hooks/useCatalogo.js";
-import { useFavoritos } from "../hooks/useFavoritos.js";
-import { useLibros } from "../hooks/useLibros.js";
+import { useBiblioteca } from "../hooks/useBiblioteca.js";
 import heroImage from "../assets/hero-fachada.png";
 import interiorImage from "../assets/nosotros-interior.png";
 
@@ -18,9 +16,7 @@ function irAlCatalogo() {
 }
 
 export default function Home({ notificar }) {
-  const datos = useLibros(notificar);
-  const favoritos = useFavoritos();
-  const catalogo = useCatalogo(datos.libros, favoritos.ids);
+  const { datos, favoritos, catalogo } = useBiblioteca(notificar);
 
   function buscarDesdeInicio(texto) {
     catalogo.buscar(texto);

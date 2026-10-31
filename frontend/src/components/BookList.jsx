@@ -28,6 +28,8 @@ function BotonFavorito({ libro, activo, onToggle }) {
 }
 
 function Acciones({ libro, onEdit, onDelete }) {
+  if (!onEdit && !onDelete) return null;
+
   return (
     <div className="book-actions">
       <button type="button" className="text-action" onClick={() => onEdit(libro)} aria-label={`Editar ${libro.titulo}`}><Icon name="edit" size={14} /> Editar</button>

@@ -23,5 +23,17 @@ class ConflictError extends AppError {
     }
 }
 
-module.exports = { AppError, BadRequestError, NotFoundError, ConflictError };
+class UnauthorizedError extends AppError {
+    constructor(message) {
+        super(message, 401);
+    }
+}
+
+class TooManyRequestsError extends AppError {
+    constructor(message) {
+        super(message, 429);
+    }
+}
+
+module.exports = { AppError, BadRequestError, UnauthorizedError, NotFoundError, ConflictError, TooManyRequestsError };
 
