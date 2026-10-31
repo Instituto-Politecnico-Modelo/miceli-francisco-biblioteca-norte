@@ -76,6 +76,14 @@
 .form-actions { display: grid; gap: 8px; padding-top: 4px; }
 .form-error { margin: 0; color: var(--terracotta-dark); font-size: 14px; font-weight: 600; }
 
+.confirm-dialog { width: min(440px, calc(100vw - 32px)); padding: 0; border: 0; border-radius: 14px; background: var(--paper-light); color: var(--ink); box-shadow: 0 24px 60px -16px rgba(0, 0, 0, .55); }
+.confirm-dialog::backdrop { background: rgba(22, 43, 32, .6); backdrop-filter: blur(2px); }
+.confirm-dialog[open] { animation: reveal .25s var(--ease-out) both; }
+.confirm-body { display: grid; gap: 12px; padding: 26px; }
+.confirm-body h2 { font-size: 24px; }
+.confirm-body p { margin: 0; color: var(--muted); font-size: 16px; }
+.confirm-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+
 .catalog-message, .empty-state { display: grid; min-height: 240px; align-content: center; justify-items: center; gap: 12px; padding: 28px; border: 1px dashed #bfae88; border-radius: 14px; color: var(--muted); text-align: center; }
 .catalog-error { color: var(--terracotta-dark); }
 .catalog-message p, .empty-state p { margin: 0; max-width: 44ch; }

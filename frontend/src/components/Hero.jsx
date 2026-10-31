@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "./Icon.jsx";
+import { hero } from "../utils/siteContent.js";
 
 export default function Hero({ imagen, onBuscar }) {
   const [texto, setTexto] = useState("");
@@ -16,9 +17,9 @@ export default function Hero({ imagen, onBuscar }) {
       style={{ backgroundImage: `linear-gradient(90deg, rgba(22, 36, 24, .92) 0%, rgba(22, 36, 24, .74) 46%, rgba(22, 36, 24, .1) 100%), url(${imagen})` }}
     >
       <div className="hero-content">
-        <p className="hero-kicker">Villa Pueyrredón, desde 1916</p>
-        <h1>Un lugar para encontrarse con los libros.</h1>
-        <p className="hero-copy">Una biblioteca de barrio, abierta a las historias y a las personas que las comparten.</p>
+        <p className="hero-kicker">{hero.kicker}</p>
+        <h1>{hero.titulo}</h1>
+        <p className="hero-copy">{hero.descripcion}</p>
         <form className="hero-search" role="search" onSubmit={enviar}>
           <label htmlFor="buscar-hero">Buscar en el catálogo</label>
           <div className="hero-search-box">
@@ -29,7 +30,7 @@ export default function Hero({ imagen, onBuscar }) {
         </form>
         <a className="hero-link" href="#catalogo">Ver todo el catálogo <Icon name="arrow-down" size={16} /></a>
       </div>
-      <span className="hero-caption">Cochrane 2334, “La Casita de Tucumán”</span>
+      <span className="hero-caption">{hero.pie}</span>
     </section>
   );
 }

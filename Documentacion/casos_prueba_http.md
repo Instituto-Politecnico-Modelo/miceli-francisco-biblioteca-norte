@@ -4,7 +4,7 @@ Este documento resume casos de prueba manuales para validar las respuestas HTTP 
 
 ## Precondiciones
 
-- Ejecutar el backend desde `Backend/` con `npm install` y `npm start`.
+- Ejecutar el backend desde `backend/` con `npm install` y `npm start`.
 - Verificar que el servidor responda en `http://localhost:3000`.
 - Tener disponible una herramienta para hacer requests: Postman, Thunder Client o `curl`.
 

@@ -23,7 +23,7 @@
 .hero-content > :nth-child(4) { animation-delay: .24s; }
 .hero-content > :nth-child(5) { animation-delay: .32s; }
 .hero-kicker { margin: 0 0 16px; color: var(--ochre); font-size: 15px; font-weight: 600; }
-.hero h1 { max-width: 620px; margin: 0; color: #fff9ec; font-size: clamp(42px, 6vw, 76px); font-weight: 600; line-height: 1.04; letter-spacing: -.025em; font-variation-settings: "opsz" 144; }
+.hero h1 { max-width: 620px; margin: 0; color: #fff9ec; font-size: clamp(42px, 6vw, 76px); font-weight: 600; line-height: 1.04; letter-spacing: -.025em; }
 .hero-copy { max-width: 470px; margin: 20px 0 30px; color: #efe6d2; font-size: 18px; }
 .hero-search label { display: block; margin-bottom: 8px; color: #efe6d2; font-size: 14px; font-weight: 600; }
 .hero-search-box { display: flex; align-items: center; gap: 10px; max-width: 540px; padding: 6px 6px 6px 16px; border-radius: 12px; background: var(--paper-light); color: var(--muted); box-shadow: 0 18px 40px -18px rgba(0, 0, 0, .7); }

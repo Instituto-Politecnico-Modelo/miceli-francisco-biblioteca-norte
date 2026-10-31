@@ -11,7 +11,7 @@ el backend con el patrón MVC y expone un CRUD de `Libro` sobre Express.
 
 ## Alcance
 
-- Arquitectura en capas (MVC) bajo `Backend/src`.
+- Arquitectura en capas (MVC) bajo `backend/src`.
 - Persistencia en memoria mediante arrays (sin base de datos).
 - CRUD completo de la entidad `Libro`.
 - Manejo centralizado de errores con clases `AppError` y mensajes en un enum.
@@ -19,7 +19,7 @@ el backend con el patrón MVC y expone un CRUD de `Libro` sobre Express.
 ## Cómo correr el backend
 
 ```bash
-cd Backend
+cd backend
 npm install
 npm start
 ```
@@ -79,7 +79,7 @@ o, en caso de error:
 
 ```text
 .
-|-- Backend/
+|-- backend/
 |   `-- src/
 |       |-- controllers/
 |       |-- services/

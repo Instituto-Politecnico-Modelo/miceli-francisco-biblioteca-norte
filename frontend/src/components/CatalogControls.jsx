@@ -8,15 +8,17 @@ const estados = [
   { valor: "de_baja", etiqueta: "De baja" },
 ];
 
-export default function CatalogControls({
-  query, onQuery,
-  categoria, onCategoria, colecciones,
-  estado, onEstado, conteos,
-  orden, onOrden,
-  vista, onVista,
-  soloFavoritos, onSoloFavoritos, totalFavoritos,
-  hayFiltros, onLimpiar,
-}) {
+export default function CatalogControls({ catalogo, totalFavoritos }) {
+  const {
+    query, setQuery: onQuery,
+    categoria, setCategoria: onCategoria, colecciones,
+    estado, setEstado: onEstado, conteos,
+    orden, setOrden: onOrden,
+    vista, setVista: onVista,
+    soloFavoritos, setSoloFavoritos: onSoloFavoritos,
+    hayFiltros, limpiar: onLimpiar,
+  } = catalogo;
+
   return (
     <div className="catalog-controls">
       <div className="control-row">
