@@ -1,3 +1,5 @@
+import Icon from "./Icon.jsx";
+
 const pasos = [
   {
     title: "Acercate",
@@ -17,15 +19,14 @@ export default function MembershipSection() {
   return (
     <section className="membership-section" id="asociarse" aria-labelledby="membership-title">
       <div className="membership-heading">
-        <div className="section-kicker"><span className="section-number">05</span><span>SUMATE A LA BIBLIOTECA</span></div>
         <h2 id="membership-title">Hacete socio y encontrá tu próximo libro.</h2>
         <p>Acercate para conocer la propuesta y conversar con el equipo de la biblioteca.</p>
-        <a className="button button-primary" href="#contacto">Planificar una visita <span aria-hidden="true">↗</span></a>
+        <a className="button button-primary" href="#contacto">Planificar una visita <Icon name="arrow-up-right" size={16} /></a>
       </div>
       <ol className="membership-steps">
         {pasos.map((paso, index) => (
           <li className="membership-step" key={paso.title}>
-            <span className="membership-number">0{index + 1}</span>
+            <span className="membership-number" aria-hidden="true">{index + 1}</span>
             <h3>{paso.title}</h3>
             <p>{paso.description}</p>
           </li>

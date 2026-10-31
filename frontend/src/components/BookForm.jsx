@@ -37,11 +37,7 @@ export default function BookForm({ libro, submitting, onCancel, onSubmit }) {
   return (
     <section className="form-panel" aria-labelledby="form-title">
       <div className="panel-heading">
-        <div>
-          <p className="eyebrow">CATÁLOGO</p>
-          <h2 id="form-title">{editando ? "Editar libro" : "Sumar un libro"}</h2>
-        </div>
-        <span className="form-index" aria-hidden="true">{editando ? "02" : "01"}</span>
+        <h2 id="form-title">{editando ? "Editar libro" : "Sumar un libro"}</h2>
       </div>
       <form onSubmit={enviarFormulario} noValidate>
         <div className="form-field">

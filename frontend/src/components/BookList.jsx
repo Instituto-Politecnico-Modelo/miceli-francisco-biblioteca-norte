@@ -1,3 +1,5 @@
+import Icon from "./Icon.jsx";
+
 const etiquetasEstado = {
   disponible: "Disponible",
   prestado: "Prestado",
@@ -5,7 +7,36 @@ const etiquetasEstado = {
   de_baja: "Dado de baja",
 };
 
-export default function BookList({ libros, loading, error, onRetry, onEdit, onDelete }) {
+function tonoDeCategoria(categoria = "") {
+  let suma = 0;
+  for (const caracter of categoria) suma += caracter.charCodeAt(0);
+  return suma % 5;
+}
+
+function BotonFavorito({ libro, activo, onToggle }) {
+  return (
+    <button
+      type="button"
+      className="favorite-button"
+      aria-pressed={activo}
+      aria-label={activo ? `Quitar “${libro.titulo}” de favoritos` : `Guardar “${libro.titulo}” en favoritos`}
+      onClick={() => onToggle(libro.id)}
+    >
+      <Icon name="heart" size={18} />
+    </button>
+  );
+}
+
+function Acciones({ libro, onEdit, onDelete }) {
+  return (
+    <div className="book-actions">
+      <button type="button" className="text-action" onClick={() => onEdit(libro)} aria-label={`Editar ${libro.titulo}`}><Icon name="edit" size={14} /> Editar</button>
+      <button type="button" className="text-action text-action-danger" onClick={() => onDelete(libro)} aria-label={`Eliminar ${libro.titulo}`}><Icon name="trash" size={14} /> Eliminar</button>
+    </div>
+  );
+}
+
+export default function BookList({ libros, vista, favoritos, onToggleFavorito, loading, error, onRetry, onEdit, onDelete, mensajeVacio }) {
   if (loading) {
     return <div className="catalog-message" role="status"><span className="spinner" />Cargando el catálogo…</div>;
   }
@@ -22,29 +53,43 @@ export default function BookList({ libros, loading, error, onRetry, onEdit, onDe
   if (libros.length === 0) {
     return (
       <div className="empty-state">
-        <span className="empty-mark" aria-hidden="true">B</span>
-        <h3>No encontramos libros con esos filtros</h3>
-        <p>Probá con otra búsqueda o agregá un libro al catálogo.</p>
+        <span className="empty-mark" aria-hidden="true"><Icon name="search" size={20} /></span>
+        <h3>{mensajeVacio.titulo}</h3>
+        <p>{mensajeVacio.detalle}</p>
       </div>
     );
   }
 
   return (
-    <div className="book-list" aria-label="Libros del catálogo">
-      {libros.map((libro) => (
-        <article className="book-row" key={libro.id}>
-          <span className="book-spine" aria-hidden="true" />
-          <div className="book-details">
-            <h3>{libro.titulo}</h3>
-            <p>{libro.autor} <span aria-hidden="true">·</span> {libro.categoria}</p>
-          </div>
-          <span className={`status-tag status-${libro.estado}`}>{etiquetasEstado[libro.estado]}</span>
-          <div className="book-actions">
-            <button type="button" className="text-action" onClick={() => onEdit(libro)} aria-label={`Editar ${libro.titulo}`}>Editar</button>
-            <button type="button" className="text-action text-action-danger" onClick={() => onDelete(libro)} aria-label={`Eliminar ${libro.titulo}`}>Eliminar</button>
-          </div>
-        </article>
-      ))}
-    </div>
+    <ul className={`book-list book-list-${vista}`} aria-label="Libros del catálogo">
+      {libros.map((libro) => {
+        const esFavorito = favoritos.includes(libro.id);
+        return vista === "grilla" ? (
+          <li className="book-card" key={libro.id}>
+            <div className={`book-cover tone-${tonoDeCategoria(libro.categoria)}`}>
+              <span className="book-cover-category">{libro.categoria}</span>
+              <span className="book-cover-title">{libro.titulo}</span>
+              <span className="book-cover-author">{libro.autor}</span>
+              <BotonFavorito libro={libro} activo={esFavorito} onToggle={onToggleFavorito} />
+            </div>
+            <div className="book-card-footer">
+              <span className={`status-tag status-${libro.estado}`}>{etiquetasEstado[libro.estado]}</span>
+              <Acciones libro={libro} onEdit={onEdit} onDelete={onDelete} />
+            </div>
+          </li>
+        ) : (
+          <li className="book-row" key={libro.id}>
+            <span className={`book-spine tone-${tonoDeCategoria(libro.categoria)}`} aria-hidden="true" />
+            <div className="book-details">
+              <h3>{libro.titulo}</h3>
+              <p>{libro.autor}<span className="book-category">{libro.categoria}</span></p>
+            </div>
+            <span className={`status-tag status-${libro.estado}`}>{etiquetasEstado[libro.estado]}</span>
+            <BotonFavorito libro={libro} activo={esFavorito} onToggle={onToggleFavorito} />
+            <Acciones libro={libro} onEdit={onEdit} onDelete={onDelete} />
+          </li>
+        );
+      })}
+    </ul>
   );
 }

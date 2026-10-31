@@ -27,21 +27,21 @@ export const services = [
 
 export const news = [
   {
-    label: "TALLERES",
+    label: "Talleres",
     title: "Taller de cuentacuentos",
     description: "Encuentros de lectura y narración para que las infancias descubran nuevas historias. Consultá próximas fechas en la biblioteca.",
     image: cuentacuentosImage,
     imageAlt: "Actividad de cuentacuentos para chicos",
   },
   {
-    label: "AGENDA CULTURAL",
+    label: "Agenda cultural",
     title: "Concierto de tango en el patio",
     description: "Música y encuentros en el patio histórico de la biblioteca. Consultá la agenda para conocer las próximas fechas.",
     image: tangoImage,
     imageAlt: "Concierto de tango en el patio de la biblioteca",
   },
   {
-    label: "TODO EL AÑO",
+    label: "Todo el año",
     title: "Donación de libros",
     description: "Recibimos libros en buen estado para que nuevas historias lleguen a más vecinos. Acercá tu donación en horario de atención.",
     image: donacionImage,
