@@ -6,6 +6,7 @@ const DURACION_SESION_MS = 8 * 60 * 60 * 1000;
 const MAX_INTENTOS_FALLIDOS = 5;
 const VENTANA_INTENTOS_MS = 15 * 60 * 1000;
 const LARGO_MAXIMO_CODIGO = 100;
+const CODIGO_DE_PRUEBA = "pueyrredon-admin-2026";
 
 function huella(valor) {
     return crypto.createHash("sha256").update(String(valor)).digest();
@@ -13,14 +14,14 @@ function huella(valor) {
 
 class AuthService {
     constructor() {
-        this.codigoDefinidoPorEntorno = Boolean(process.env.ADMIN_CODIGO);
-        this.codigoAdministrador = process.env.ADMIN_CODIGO || crypto.randomBytes(6).toString("hex");
+        this.usaCodigoDePrueba = !process.env.ADMIN_CODIGO;
+        this.codigoAdministrador = process.env.ADMIN_CODIGO || CODIGO_DE_PRUEBA;
         this.sesiones = new Map();
         this.intentosFallidos = new Map();
     }
 
-    obtenerCodigoGenerado() {
-        return this.codigoDefinidoPorEntorno ? null : this.codigoAdministrador;
+    usaCodigoPorDefecto() {
+        return this.usaCodigoDePrueba;
     }
 
     iniciarSesion(codigo, origen) {

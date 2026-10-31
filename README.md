@@ -30,13 +30,20 @@ El servidor levanta en `http://localhost:3000`.
 
 ### Código de administrador
 
-Para entrar a `/admin`, el servidor usa el código de la variable de entorno `ADMIN_CODIGO`:
+Para entrar a `/admin` (`http://localhost:5173/admin`) se usa un código de administrador.
+
+> **Etapa de pruebas:** por ahora el código está fijo y publicado acá para poder probar el sistema.
+> Antes de un uso real hay que cambiarlo y no publicarlo.
+
+| Dato | Valor |
+| ---- | ----- |
+| Código de administrador (prueba) | `pueyrredon-admin-2026` |
+
+Para usar otro código sin tocar el código fuente, definilo con la variable de entorno `ADMIN_CODIGO`:
 
 ```powershell
 $env:ADMIN_CODIGO = "mi-codigo-secreto"; npm start
 ```
-
-Si no la definís, el servidor genera un código aleatorio y lo muestra en la consola al iniciar (válido hasta que se reinicie).
 
 ## Cómo correr el frontend
 

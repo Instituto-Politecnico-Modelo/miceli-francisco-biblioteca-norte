@@ -6,9 +6,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 
-    const codigoGenerado = authService.obtenerCodigoGenerado();
-    if (codigoGenerado) {
-        console.log(`Código de administrador (temporal, válido hasta reiniciar): ${codigoGenerado}`);
-        console.log("Para fijar uno propio, definí la variable de entorno ADMIN_CODIGO.");
+    if (authService.usaCodigoPorDefecto()) {
+        console.log("Administración: usando el código de prueba (ver README). Definí ADMIN_CODIGO para cambiarlo.");
     }
 });
