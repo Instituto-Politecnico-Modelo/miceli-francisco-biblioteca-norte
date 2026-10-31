@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import BackToTop from "../components/BackToTop.jsx";
 import BookOfTheDay from "../components/BookOfTheDay.jsx";
 import CatalogSection from "../components/CatalogSection.jsx";
@@ -12,8 +12,8 @@ import ReadingProgress from "../components/ReadingProgress.jsx";
 import ServicesSection from "../components/ServicesSection.jsx";
 import { useBiblioteca } from "../hooks/useBiblioteca.js";
 import { elegirLibroDelDia } from "../utils/libros.js";
-import heroImage from "../assets/hero-fachada.png";
-import interiorImage from "../assets/nosotros-interior.png";
+import heroImage from "../assets/hero-fachada.jpg";
+import interiorImage from "../assets/nosotros-interior.jpg";
 
 function irAlCatalogo() {
   document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth" });
@@ -22,6 +22,10 @@ function irAlCatalogo() {
 export default function Home({ notificar }) {
   const { datos, favoritos, catalogo } = useBiblioteca(notificar);
   const libroDelDia = useMemo(() => elegirLibroDelDia(datos.libros), [datos.libros]);
+
+  useEffect(() => {
+    document.title = "Biblioteca Popular Pueyrredón Norte";
+  }, []);
 
   function buscarDesdeInicio(texto) {
     catalogo.buscar(texto);
@@ -36,7 +40,7 @@ export default function Home({ notificar }) {
   return (
     <>
       <ReadingProgress />
-      <main>
+      <main id="contenido" tabIndex={-1}>
         <Hero imagen={heroImage} onBuscar={buscarDesdeInicio} />
         <IntroSection imagen={interiorImage} />
         <ServicesSection />

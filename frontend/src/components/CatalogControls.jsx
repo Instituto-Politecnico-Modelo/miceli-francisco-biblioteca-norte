@@ -26,13 +26,13 @@ export default function CatalogControls({ catalogo, totalFavoritos }) {
           <label htmlFor="buscar-libro">Buscar</label>
           <div className="input-with-icon">
             <Icon name="search" size={18} />
-            <input id="buscar-libro" type="search" placeholder="Título, autor o categoría" value={query} onChange={(event) => onQuery(event.target.value)} />
+            <input id="buscar-libro" name="q" type="search" autoComplete="off" enterKeyHint="search" placeholder="Título, autor o categoría…" value={query} onChange={(event) => onQuery(event.target.value)} />
           </div>
         </div>
         <div className="filter-field">
           <label htmlFor="filtrar-categoria">Colección</label>
           <select id="filtrar-categoria" value={categoria} onChange={(event) => onCategoria(event.target.value)}>
-            <option value="">Todas las colecciones</option>
+            <option value="">Todas</option>
             {colecciones.map((coleccion) => <option key={coleccion.categoria} value={coleccion.categoria}>{coleccion.categoria}</option>)}
           </select>
         </div>

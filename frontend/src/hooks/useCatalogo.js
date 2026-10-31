@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const LIBROS_POR_PAGINA = 10;
+
+const ESTADOS = ["todos", "disponible", "prestado", "reservado", "de_baja"];
 
 const ordenadores = {
   titulo: (a, b) => a.titulo.localeCompare(b.titulo, "es"),
@@ -21,13 +24,25 @@ function agruparColecciones(libros) {
 }
 
 export function useCatalogo(libros, favoritosIds) {
-  const [query, setQuery] = useState("");
-  const [estado, setEstado] = useState("todos");
-  const [categoria, setCategoria] = useState("");
-  const [orden, setOrden] = useState("titulo");
-  const [vista, setVista] = useState("lista");
-  const [soloFavoritos, setSoloFavoritos] = useState(false);
+  const [params, setParams] = useSearchParams();
+  const [query, setQuery] = useState(() => params.get("q") ?? "");
+  const [estado, setEstado] = useState(() => (ESTADOS.includes(params.get("estado")) ? params.get("estado") : "todos"));
+  const [categoria, setCategoria] = useState(() => params.get("coleccion") ?? "");
+  const [orden, setOrden] = useState(() => (params.get("orden") in ordenadores ? params.get("orden") : "titulo"));
+  const [vista, setVista] = useState(() => (params.get("vista") === "grilla" ? "grilla" : "lista"));
+  const [soloFavoritos, setSoloFavoritos] = useState(() => params.get("favoritos") === "1");
   const [visibles, setVisibles] = useState(LIBROS_POR_PAGINA);
+
+  useEffect(() => {
+    const siguientes = new URLSearchParams();
+    if (query.trim()) siguientes.set("q", query);
+    if (estado !== "todos") siguientes.set("estado", estado);
+    if (categoria) siguientes.set("coleccion", categoria);
+    if (orden !== "titulo") siguientes.set("orden", orden);
+    if (vista !== "lista") siguientes.set("vista", vista);
+    if (soloFavoritos) siguientes.set("favoritos", "1");
+    if (siguientes.toString() !== params.toString()) setParams(siguientes, { replace: true });
+  }, [query, estado, categoria, orden, vista, soloFavoritos]);
 
   useEffect(() => {
     setVisibles(LIBROS_POR_PAGINA);

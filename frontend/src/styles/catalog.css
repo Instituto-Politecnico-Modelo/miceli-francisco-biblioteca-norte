@@ -18,14 +18,14 @@
 .search-field input::placeholder { color: #7d7465; }
 
 .chip-group, .control-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.chip { display: inline-flex; min-height: 38px; align-items: center; gap: 7px; padding: 6px 14px; border: 1px solid #bfae88; border-radius: 999px; background: transparent; color: var(--green-dark); font-size: 14px; font-weight: 600; transition: background-color .2s, color .2s, border-color .2s; }
+.chip { display: inline-flex; min-height: 40px; align-items: center; gap: 7px; padding: 6px 14px; border: 1px solid #bfae88; border-radius: 999px; background: transparent; color: var(--green-dark); font-size: 14px; font-weight: 600; transition: background-color .2s, color .2s, border-color .2s; }
 .chip:hover { border-color: var(--green); background: var(--paper-deep); }
 .chip[aria-pressed="true"] { border-color: var(--green-dark); background: var(--green-dark); color: var(--paper-light); }
 .chip-favorites[aria-pressed="true"] { border-color: var(--terracotta-dark); background: var(--terracotta-dark); }
 .chip-count { min-width: 20px; padding: 0 6px; border-radius: 999px; background: rgba(43, 36, 27, .1); font-size: 12px; text-align: center; }
 .chip[aria-pressed="true"] .chip-count { background: rgba(255, 255, 255, .22); }
 .view-toggle { display: inline-flex; overflow: hidden; border: 1px solid #bfae88; border-radius: 8px; }
-.view-toggle button { display: grid; width: 42px; height: 38px; place-items: center; border: 0; background: transparent; color: var(--green-dark); }
+.view-toggle button { display: grid; width: 44px; height: 40px; place-items: center; border: 0; background: transparent; color: var(--green-dark); }
 .view-toggle button[aria-pressed="true"] { background: var(--green-dark); color: var(--paper-light); }
 .view-toggle button:not([aria-pressed="true"]):hover { background: var(--paper-deep); }
 .clear-filters { justify-self: start; }
@@ -47,7 +47,7 @@
 .status-de_baja { background: #ecd6d0; color: #67291f; }
 .book-actions { display: flex; gap: 6px; }
 
-.favorite-button { display: grid; width: 40px; height: 40px; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); transition: background-color .2s, color .2s, transform .2s var(--ease-out); }
+.favorite-button { display: grid; width: 44px; height: 44px; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); transition: background-color .2s, color .2s, transform .2s var(--ease-out); }
 .favorite-button:hover { background: var(--paper-deep); color: var(--terracotta); }
 .favorite-button[aria-pressed="true"] { color: var(--terracotta); }
 .favorite-button[aria-pressed="true"] .icon { fill: currentColor; }
@@ -76,8 +76,17 @@
 .form-panel form { display: grid; gap: 16px; }
 .form-actions { display: grid; gap: 8px; padding-top: 4px; }
 .form-error { margin: 0; color: var(--terracotta-dark); font-size: 14px; font-weight: 600; }
+.field-error { margin: 0; color: var(--terracotta-dark); font-size: 14px; font-weight: 600; }
+.form-field input[aria-invalid="true"] { border-color: var(--terracotta-dark); box-shadow: 0 0 0 1px var(--terracotta-dark); }
 
-.confirm-dialog { width: min(440px, calc(100vw - 32px)); padding: 0; border: 0; border-radius: 14px; background: var(--paper-light); color: var(--ink); box-shadow: 0 24px 60px -16px rgba(0, 0, 0, .55); }
+.skeleton-list { border-top: 1px solid var(--line); }
+.skeleton-row { display: grid; gap: 10px; padding: 22px 4px; border-bottom: 1px solid var(--line); }
+.skeleton-bar { display: block; height: 14px; border-radius: 6px; background: linear-gradient(90deg, var(--paper-deep) 0%, var(--paper) 50%, var(--paper-deep) 100%); background-size: 220% 100%; animation: shimmer 1.6s ease-in-out infinite; }
+.skeleton-title { width: min(52%, 320px); height: 18px; }
+.skeleton-sub { width: min(34%, 200px); }
+@keyframes shimmer { from { background-position: 120% 0; } to { background-position: -120% 0; } }
+
+.confirm-dialog { width: min(440px, calc(100vw - 32px)); padding: 0; overscroll-behavior: contain; border: 0; border-radius: 14px; background: var(--paper-light); color: var(--ink); box-shadow: 0 24px 60px -16px rgba(0, 0, 0, .55); }
 .confirm-dialog::backdrop { background: rgba(22, 43, 32, .6); backdrop-filter: blur(2px); }
 .confirm-dialog[open] { animation: reveal .25s var(--ease-out) both; }
 .confirm-body { display: grid; gap: 12px; padding: 26px; }

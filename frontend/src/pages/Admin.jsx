@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AdminBar from "../components/AdminBar.jsx";
 import CatalogSection from "../components/CatalogSection.jsx";
 import LoginForm from "../components/LoginForm.jsx";
@@ -12,10 +13,14 @@ function PanelCatalogo({ notificar }) {
 export default function Admin({ notificar }) {
   const admin = useAdmin(notificar);
 
+  useEffect(() => {
+    document.title = "Administración · Biblioteca Popular Pueyrredón Norte";
+  }, []);
+
   return (
     <>
       <AdminBar autenticado={admin.autenticado} onSalir={admin.salir} />
-      <main className="admin-main">
+      <main className="admin-main" id="contenido" tabIndex={-1}>
         {admin.verificando && <p className="admin-status" role="status"><span className="spinner" /> Verificando tu sesión…</p>}
         {!admin.verificando && !admin.autenticado && <LoginForm ingresando={admin.ingresando} onSubmit={admin.entrar} />}
         {!admin.verificando && admin.autenticado && <PanelCatalogo notificar={notificar} />}

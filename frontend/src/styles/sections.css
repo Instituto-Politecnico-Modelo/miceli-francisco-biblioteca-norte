@@ -32,7 +32,7 @@
 .spine:focus-visible { outline-color: var(--ink); }
 .spine-total { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1; }
 .spine-name { min-height: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1.1; writing-mode: vertical-rl; transform: rotate(180deg); }
-.collections-link { display: flex; align-items: center; gap: 8px; margin: 28px 0 0; padding: 6px 0; border: 0; border-bottom: 2px solid var(--terracotta); background: transparent; color: var(--green-dark); font-weight: 700; width: fit-content; }
+.collections-link { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 28px 0 0; padding: 6px 0; border: 0; border-bottom: 2px solid var(--terracotta); background: transparent; color: var(--green-dark); font-weight: 700; width: fit-content; }
 .collections-link:hover { color: var(--terracotta-dark); }
 .collections-message { margin: 0; padding: 28px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); text-align: center; }
 
@@ -55,8 +55,9 @@
 .today-cover-title { overflow-wrap: anywhere; font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.15; }
 .today-cover-author { font-size: 14px; }
 .today-copy h2 { margin-bottom: 12px; font-size: clamp(28px, 3vw, 36px); }
-.today-book { margin: 0 0 6px; color: var(--ink); font-size: 20px; }
+.today-book { display: grid; gap: 2px; margin: 0 0 8px; color: var(--ink); font-size: 20px; }
 .today-book strong { font-family: var(--serif); font-weight: 600; }
+.today-book span { color: var(--muted); font-size: 17px; }
 .today-note { max-width: 52ch; margin: 0 0 22px; color: var(--muted); }
 
 .news-section { padding: clamp(56px, 8vw, 100px) clamp(24px, 7vw, 102px); background: var(--paper); }

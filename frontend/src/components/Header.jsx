@@ -46,9 +46,9 @@ export default function Header() {
     <header className="site-header">
       <a className="brand" href="#inicio" aria-label="Biblioteca Popular Pueyrredón Norte, inicio">
         <span className="brand-mark">
-          <img src={logo} alt="" />
+          <img src={logo} alt="" width="400" height="400" />
         </span>
-        <span className="brand-name">Biblioteca Popular <strong>Pueyrredón Norte</strong></span>
+        <span className="brand-name" translate="no">Biblioteca Popular <strong>Pueyrredón Norte</strong></span>
       </a>
       <button
         className="menu-toggle"

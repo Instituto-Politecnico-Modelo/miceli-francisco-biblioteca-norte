@@ -18,6 +18,7 @@ export default function App() {
 
   return (
     <>
+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <Routes>
         <Route
           path="/"

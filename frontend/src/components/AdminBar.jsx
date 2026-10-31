@@ -7,9 +7,9 @@ export default function AdminBar({ autenticado, onSalir }) {
     <header className="site-header admin-bar">
       <Link className="brand" to="/" aria-label="Biblioteca Popular Pueyrredón Norte, volver al sitio">
         <span className="brand-mark">
-          <img src={logo} alt="" />
+          <img src={logo} alt="" width="400" height="400" />
         </span>
-        <span className="brand-name">Biblioteca Popular <strong>Pueyrredón Norte</strong></span>
+        <span className="brand-name" translate="no">Biblioteca Popular <strong>Pueyrredón Norte</strong></span>
       </Link>
       <div className="admin-bar-actions">
         <span className="admin-badge">Administración</span>

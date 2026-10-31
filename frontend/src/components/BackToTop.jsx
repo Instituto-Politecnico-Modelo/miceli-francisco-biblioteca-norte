@@ -5,8 +5,14 @@ export default function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const actualizar = () => setVisible(window.scrollY > 900);
-    actualizar();
+    let ultimaPosicion = window.scrollY;
+    const actualizar = () => {
+      const posicion = window.scrollY;
+      if (posicion < 900) setVisible(false);
+      else if (posicion < ultimaPosicion - 4) setVisible(true);
+      else if (posicion > ultimaPosicion + 4) setVisible(false);
+      ultimaPosicion = posicion;
+    };
     window.addEventListener("scroll", actualizar, { passive: true });
     return () => window.removeEventListener("scroll", actualizar);
   }, []);

@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { enfocarEnEscritorio } from "../utils/foco.js";
 
 export default function LoginForm({ ingresando, onSubmit }) {
   const [codigo, setCodigo] = useState("");
   const [error, setError] = useState("");
+  const campoRef = useRef(null);
+
+  useEffect(() => {
+    enfocarEnEscritorio(campoRef.current);
+  }, []);
 
   async function enviar(event) {
     event.preventDefault();
     if (!codigo.trim()) {
       setError("Ingresá el código de administrador.");
+      campoRef.current?.focus();
       return;
     }
     const ingreso = await onSubmit(codigo);
@@ -27,11 +34,11 @@ export default function LoginForm({ ingresando, onSubmit }) {
             type="password"
             autoComplete="current-password"
             maxLength={100}
+            ref={campoRef}
             value={codigo}
             onChange={(event) => { setCodigo(event.target.value); setError(""); }}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "codigo-error" : undefined}
-            autoFocus
           />
         </div>
         {error && <p className="form-error" id="codigo-error" role="alert">{error}</p>}

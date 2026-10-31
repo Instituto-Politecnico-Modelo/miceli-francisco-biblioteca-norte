@@ -35,7 +35,17 @@ function Acciones({ libro, onEdit, onDelete }) {
 
 export default function BookList({ libros, vista, favoritos, onToggleFavorito, loading, error, onRetry, onEdit, onDelete, mensajeVacio }) {
   if (loading) {
-    return <div className="catalog-message" role="status"><span className="spinner" />Cargando el catálogo…</div>;
+    return (
+      <div className="skeleton-list" role="status">
+        <span className="visually-hidden">Cargando el catálogo…</span>
+        {Array.from({ length: 5 }, (_, indice) => (
+          <div className="skeleton-row" key={indice} aria-hidden="true">
+            <span className="skeleton-bar skeleton-title" />
+            <span className="skeleton-bar skeleton-sub" />
+          </div>
+        ))}
+      </div>
+    );
   }
 
   if (error) {

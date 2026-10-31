@@ -25,7 +25,7 @@ export default function Hero({ imagen, onBuscar }) {
           <label htmlFor="buscar-hero">Buscar en el catálogo</label>
           <div className="hero-search-box">
             <Icon name="search" size={20} />
-            <input id="buscar-hero" type="search" placeholder="Título, autor o categoría" value={texto} onChange={(event) => setTexto(event.target.value)} />
+            <input id="buscar-hero" name="q" type="search" autoComplete="off" enterKeyHint="search" placeholder="Título, autor o categoría…" value={texto} onChange={(event) => setTexto(event.target.value)} />
             <button className="button button-hero" type="submit">Buscar</button>
           </div>
         </form>
