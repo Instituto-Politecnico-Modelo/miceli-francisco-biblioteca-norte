@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Icon from "./Icon.jsx";
 import { hashTexto } from "../utils/libros.js";
 
-const ESPERA_MS = 2000;
+const ESPERA_MS = 1000;
 
 export default function CollectionsSection({ colecciones, loading, onSelect }) {
   const [elegida, setElegida] = useState(null);
