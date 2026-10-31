@@ -6,14 +6,19 @@ export const SESION_EXPIRADA = "sesion:expirada";
 
 export async function request(path, options = {}) {
   const token = leerSesion();
-  const response = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...(token && { Authorization: `Bearer ${token}` }),
-      ...options.headers,
-    },
-  });
+  let response;
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+        ...options.headers,
+      },
+    });
+  } catch {
+    throw new Error("No se pudo conectar con el servidor. Verificá que el backend esté activo.");
+  }
   const payload = await response.json().catch(() => ({}));
 
   if (response.status === 401 && token) {
