@@ -1,22 +1,23 @@
 # Biblioteca Popular Pueyrredon Norte
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Estado-Entrega%202-4D6B45?style=for-the-badge" alt="Estado: Entrega 2">
+  <img src="https://img.shields.io/badge/Estado-Entrega%203-4D6B45?style=for-the-badge" alt="Estado: Entrega 3">
   <img src="https://img.shields.io/badge/Dominio-Biblioteca%20popular-C1541A?style=for-the-badge" alt="Dominio: Biblioteca popular">
   <img src="https://img.shields.io/badge/JavaScript-MVC%20%2B%20Express-EDE0C4?style=for-the-badge&logo=javascript&logoColor=3A3227" alt="JavaScript: MVC + Express">
 </p>
 
-Proyecto de biblioteca popular. La primera entrega modelaba el dominio; esta entrega organiza
-el backend con el patrón MVC y expone un CRUD de `Libro` sobre Express.
+Proyecto de biblioteca popular. El backend usa el patrón MVC y Express para gestionar el catálogo,
+los socios y el flujo de préstamos y devoluciones.
 
 ## Alcance
 
 - Arquitectura en capas (MVC) bajo `backend/src`.
 - Persistencia en memoria mediante arrays (sin base de datos).
-- CRUD completo de la entidad `Libro`.
+- CRUD completo de `Libro`, registro de socios y gestión del historial de préstamos.
 - Sitio público de solo lectura (`/`) y panel de administración protegido (`/admin`).
-- Autenticación de administrador con código y token de sesión: crear, editar y eliminar libros exige ser administrador.
+- Autenticación de administrador con código y token de sesión: las operaciones de gestión requieren sesión.
 - Manejo centralizado de errores con clases `AppError` y mensajes en un enum.
+- Los préstamos vencen a los 14 días corridos; un libro solo puede tener un préstamo activo.
 
 ## Cómo correr el backend
 
@@ -27,6 +28,12 @@ npm start
 ```
 
 El servidor levanta en `http://localhost:3000`.
+
+Para ejecutar las pruebas automatizadas de socios y préstamos:
+
+```bash
+npm test
+```
 
 ### Código de administrador
 
@@ -69,6 +76,49 @@ Para cambiar la URL de la API, definí `VITE_API_URL` (por ejemplo, `http://loca
 | PUT    | `/api/libros/:id` | Actualiza un libro (parcial)    | Administrador |
 | DELETE | `/api/libros/:id` | Elimina un libro                | Administrador |
 
+El estado `prestado` se asigna automáticamente al crear un préstamo y vuelve a `disponible` al
+devolverlo. No se puede cambiar manualmente ese estado ni modificar el estado o eliminar un libro
+mientras tenga un préstamo activo.
+
+## Endpoints - `/api/usuarios`
+
+| Método | Ruta             | Descripción         | Acceso        |
+| ------ | ---------------- | ------------------- | ------------- |
+| GET    | `/api/usuarios`  | Lista los socios    | Administrador |
+| POST   | `/api/usuarios`  | Registra un socio   | Administrador |
+
+El alta requiere `nombre`, `correo` y `telefono`. El correo se valida y no puede repetirse, sin
+distinguir mayúsculas de minúsculas.
+
+```json
+{
+  "nombre": "Ana Vecina",
+  "correo": "ana@example.org",
+  "telefono": "+54 11 4567-1234"
+}
+```
+
+## Endpoints - `/api/prestamos`
+
+| Método | Ruta                              | Descripción                                  | Acceso        |
+| ------ | --------------------------------- | -------------------------------------------- | ------------- |
+| GET    | `/api/prestamos`                  | Lista los préstamos activos y el historial   | Administrador |
+| POST   | `/api/prestamos`                  | Registra un préstamo                         | Administrador |
+| POST   | `/api/prestamos/:id/devolucion`   | Registra la devolución de un préstamo activo | Administrador |
+
+Para prestar se envían los IDs de un socio existente y un libro disponible:
+
+```json
+{
+  "usuarioId": 1,
+  "libroId": 1
+}
+```
+
+Cada préstamo guarda las fechas ISO de inicio y vencimiento, el estado (`activo` o `devuelto`) y,
+al devolverlo, `fechaDevolucion`. No se puede prestar dos veces el mismo libro en simultáneo ni
+devolver un préstamo más de una vez.
+
 ## Endpoints - `/api/auth`
 
 | Método | Ruta               | Descripción                                          | Acceso        |
@@ -91,7 +141,8 @@ Body esperado para crear/actualizar:
 }
 ```
 
-`estado` acepta: `disponible`, `prestado`, `reservado`, `de_baja`.
+`estado` admite: `disponible`, `reservado`, `de_baja`. `prestado` es un estado gestionado por el
+flujo de préstamos, no editable desde el formulario del catálogo.
 
 Todas las respuestas siguen el formato:
 
@@ -129,7 +180,7 @@ o, en caso de error:
 - Diagrama de clases del dominio.
 - Maqueta HTML de referencia.
 - Imagenes usadas por la maqueta.
-- Casos de prueba HTTP del CRUD: `Documentacion/casos_prueba_http.md`.
+- Casos de prueba HTTP del catálogo, socios y préstamos: `Documentacion/casos_prueba_http.md`.
 
 ## Entidades principales
 

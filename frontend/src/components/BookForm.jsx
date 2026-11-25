@@ -28,9 +28,9 @@ export default function BookForm({ libro, submitting, onCancel, onSubmit }) {
       titulo: values.titulo.trim(),
       autor: values.autor.trim(),
       categoria: values.categoria.trim(),
-      estado: values.estado,
     };
-    const erroresValidacion = validarLibro(libroNormalizado);
+    if (libro?.estado !== "prestado") libroNormalizado.estado = values.estado;
+    const erroresValidacion = validarLibro({ ...libroNormalizado, estado: values.estado });
     const primerCampo = Object.keys(erroresValidacion)[0];
     if (primerCampo) {
       setErrores(erroresValidacion);
@@ -77,7 +77,7 @@ export default function BookForm({ libro, submitting, onCancel, onSubmit }) {
           <label htmlFor="estado">Estado</label>
           <select {...propiedadesDeCampo("estado")}>
             <option value="disponible">Disponible</option>
-            <option value="prestado">Prestado</option>
+            {libro?.estado === "prestado" && <option value="prestado" disabled>Prestado · se libera al devolver</option>}
             <option value="reservado">Reservado</option>
             <option value="de_baja">Dado de baja</option>
           </select>
