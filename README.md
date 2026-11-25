@@ -181,6 +181,7 @@ o, en caso de error:
 - Maqueta HTML de referencia.
 - Imagenes usadas por la maqueta.
 - Casos de prueba HTTP del catálogo, socios y préstamos: `Documentacion/casos_prueba_http.md`.
+- [Guía de la página y guion para el video de defensa](./Documentacion/guia_video_defensa.md).
 
 ## Entidades principales
 
